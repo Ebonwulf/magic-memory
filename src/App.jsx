@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.scss';
 import SingleCard from './components/SingleCard/SingleCard';
 
@@ -30,10 +30,24 @@ const App = () => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
 
+  //compare 2 selected cards
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        console.log('those cards match');
+        resetTurn();
+      } else {
+        console.log('those cards do not match');
+        resetTurn();
+      }
+    }
+  }, [choiceOne, choiceTwo]);
+
   //reset choices and increase turn
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
+    setTurns((prevTurns) => prevTurns + 1);
   };
 
   return (
@@ -42,11 +56,7 @@ const App = () => {
       <button onClick={shuffleCards}>New Game</button>
       <div className='card-grid'>
         {cards.map((card) => (
-          <SingleCard
-            key={card.id}
-            card={card.src}
-            handleChoice={handleChoice}
-          />
+          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
         ))}
       </div>
     </div>

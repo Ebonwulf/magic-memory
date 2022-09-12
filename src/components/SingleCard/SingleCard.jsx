@@ -9,7 +9,7 @@ const SingleCard = ({ card, handleChoice }) => {
   return (
     <div className='card'>
       <div>
-        <img className='card__front' src={card} alt='card front' />
+        <img className='card__front' src={card.src} alt='card front' />
         <img
           className='card__back'
           src='/images/cover.png'
