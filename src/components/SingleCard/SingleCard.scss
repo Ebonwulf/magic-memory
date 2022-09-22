@@ -1,5 +1,6 @@
 .card {
   position: relative;
+  width: 120px;
 }
 
 .card img {
@@ -7,4 +8,27 @@
   display: block;
   border: 2px solid #fff;
   border-radius: 6px;
+  height: 140px;
+}
+
+/* front of card - the picture. The transition properties animate the card and make it look like it is flipping over*/
+.card .front {
+  transform: rotateY(90deg);
+  position: absolute;
+  transition: all ease-in 0.2s;
+  height: 100%;
+}
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+/* back of card - cover. The transition properties make it look like it flips over*/
+.card .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
 }
